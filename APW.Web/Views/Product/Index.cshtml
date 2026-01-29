@@ -3,6 +3,23 @@
     ViewData["Title"] = "Product Page";
 }
 
+@functions {
+    string GetProductColor(int id)
+    {
+        return id % 2 == 0 ? "blue" : "red";
+    }
+}
+
+<div class="text-center">
+    @foreach (var product in Model)
+    {
+        <div class="product-item" style="color:@GetProductColor(product.Id)">
+            <h2>@product.Id - @product.Name</h2>
+            <p>Price: @product.Price.ToString("C")</p>
+        </div>
+    }
+</div>
+
 <div class="text-center">
 
     @foreach (var product in Model)
@@ -12,4 +29,5 @@
             <p>Price: @product.Price.ToString("C")</p>
         </div>
     }
+
 </div>
