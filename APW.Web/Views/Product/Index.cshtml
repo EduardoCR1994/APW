@@ -8,6 +8,20 @@
     {
         return id % 2 == 0 ? "blue" : "red";
     }
+
+    string GetDiscountPrice(decimal price)
+    {
+		// esto quita el numero entero y deja solo los centavos
+        int centavos = (int)((price - Math.Floor(price)) * 100);
+
+        switch (centavos > 50)
+        {
+            case true:
+				return "20% de descuento";
+            default:
+                return "10% de descuento";
+        }
+    }
 }
 
 <div class="text-center">
@@ -16,6 +30,7 @@
         <div class="product-item" style="color:@GetProductColor(product.Id)">
             <h2>@product.Id - @product.Name</h2>
             <p>Price: @product.Price.ToString("C")</p>
+            <strong>(@GetDiscountPrice(product.Price))</strong>
         </div>
     }
 </div>
