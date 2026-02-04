@@ -1,4 +1,7 @@
 using APW.Architecture;
+using APW.Data;
+using APW.Data.Repositories;
+using APW.Data.Repositories.Implementations;
 using APW.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IWrapperServiceProvider, WrapperServiceProvider>();
 builder.Services.AddScoped<IRestProvider, RestProvider>();
+builder.Services.AddDbContext<ProductDbContext>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

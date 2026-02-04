@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APW.Models", "APW.Models\AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APW.Architecture", "APW.Architecture\APW.Architecture.csproj", "{A5E0D563-DC4E-6BC6-6455-EC00758826AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APW.Data", "APW.Data\APW.Data.csproj", "{147C2CB2-BFBB-48F2-B89F-9F4AB738D681}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A5E0D563-DC4E-6BC6-6455-EC00758826AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5E0D563-DC4E-6BC6-6455-EC00758826AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5E0D563-DC4E-6BC6-6455-EC00758826AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{147C2CB2-BFBB-48F2-B89F-9F4AB738D681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{147C2CB2-BFBB-48F2-B89F-9F4AB738D681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{147C2CB2-BFBB-48F2-B89F-9F4AB738D681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{147C2CB2-BFBB-48F2-B89F-9F4AB738D681}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
