@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\APW.Data\APW.Data.csproj" />
 	  <ProjectReference Include="..\APW.Models\APW.Models.csproj" />
 	</ItemGroup>
 

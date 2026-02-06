@@ -28,7 +28,7 @@ namespace APW.Web.Controllers
                 .GetDataAsync<IEnumerable<ProductViewModel>>(
                     "http://localhost:5096/ProductApi"
                 );
-
+            
             return View(data);
         }
     }

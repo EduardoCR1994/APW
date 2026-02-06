@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\APW.Data\APW.Data.csproj" />
+  </ItemGroup>
+
 </Project>

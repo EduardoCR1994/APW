@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\APW.API\APW.API.csproj" />
     <ProjectReference Include="..\APW.Architecture\APW.Architecture.csproj" />
+    <ProjectReference Include="..\APW.Data\APW.Data.csproj" />
   </ItemGroup>
 
 </Project>

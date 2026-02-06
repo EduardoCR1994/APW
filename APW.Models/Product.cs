@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using APW.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace APW.Models
 {
@@ -7,6 +8,7 @@ namespace APW.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-
+        public string CategoryName { get; set; } = "";
+        
     }
 }

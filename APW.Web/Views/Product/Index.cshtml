@@ -11,29 +11,92 @@
 
     string GetDiscountPrice(decimal price)
     {
-		// esto quita el numero entero y deja solo los centavos
+        // esto quita el numero entero y deja solo los centavos
         int centavos = (int)((price - Math.Floor(price)) * 100);
 
         switch (centavos > 50)
         {
             case true:
-				return "20% de descuento";
+                return "20% de descuento";
             default:
                 return "10% de descuento";
         }
     }
+
+    // acá voy a hacer un switch que segun x categoria devuelva un descuento
+    decimal GetDiscountPriceByCategory(decimal price, string? categoryName)
+    {
+        decimal finalPrice;
+
+        switch (categoryName)
+        {
+            case "Snacks":
+                finalPrice = price * 0.90m; // 10% de descuento
+                break;
+            case "Electronics":
+                finalPrice = price * 0.80m; // 20% de descuento
+                break;
+            case "Dairy":
+                finalPrice = price * 0.85m; // 15% de descuento
+                break;
+            default:
+                finalPrice = price * 0.95m; // 5% de descuento
+                break;
+
+        }
+        return finalPrice;
+    }
+
+    string GetDiscountLabel(string? categoryName)
+    {
+        switch (categoryName)
+        {
+            case "Snacks":
+                return "10% de descuento";
+
+            case "Electronics":
+                return "20% de descuento";
+
+            case "Dairy":
+                return "15% de descuento";
+
+            default:
+                return "5% de descuento";
+        }
+    }
+    
 }
 
 <div class="text-center">
     @foreach (var product in Model)
     {
+        var originalPrice = product.Price;
+		var categoryName = product.CategoryName;
+        var discountedPrice = GetDiscountPriceByCategory(originalPrice, categoryName);
+        var discountText = GetDiscountLabel(categoryName);
+
         <div class="product-item" style="color:@GetProductColor(product.Id)">
             <h2>@product.Id - @product.Name</h2>
-            <p>Price: @product.Price.ToString("C")</p>
-            <strong>(@GetDiscountPrice(product.Price))</strong>
+
+            <p>
+                Precio original:
+                <span style="text-decoration: line-through; color: gray;">
+					@originalPrice.ToString("C")
+                </span>
+            </p>
+
+            <p>
+                Precio con descuento:
+                <strong>@discountedPrice.ToString("C")</strong>
+            </p>
+
+            <p style="color: green; font-weight: bold;">
+                @discountText
+            </p>
         </div>
     }
 </div>
+
 
 <div class="text-center">
 

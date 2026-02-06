@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using APW.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace APW.Web.Models
 {
@@ -11,5 +12,6 @@ namespace APW.Web.Models
 
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero")]
         public decimal Price { get; set; }
+        public string CategoryName { get; set; } = "";
     }
 }
