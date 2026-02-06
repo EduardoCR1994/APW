@@ -64,6 +64,38 @@
                 return "5% de descuento";
         }
     }
+
+    // esta funcion devuelve si el id es par o impar usando un while y el operador
+    // primero pasa con el Math.Abs al valor absoluto en caso de tener valores negativos
+    public string GetOddEvenWhile(int id)
+    {
+        int temp = Math.Abs(id);
+
+
+        while (temp > 1)
+        {
+            temp = temp % 2;
+        }
+
+        return temp == 0 ? "Par" : "Impar";
+    }
+
+    // en esta funcion categoriza el tipo de roducto segun el price
+    public string GetPriceCategory(decimal price)
+    {
+        if (price > 100m)
+        {
+            return "Producto caro";
+        }
+        else if (price > 50m)
+        {
+            return "Producto moderado";
+        }
+        else
+        {
+            return "Producto economico";
+        }
+    }
     
 }
 
@@ -71,7 +103,7 @@
     @foreach (var product in Model)
     {
         var originalPrice = product.Price;
-		var categoryName = product.CategoryName;
+        var categoryName = product.CategoryName;
         var discountedPrice = GetDiscountPriceByCategory(originalPrice, categoryName);
         var discountText = GetDiscountLabel(categoryName);
 
@@ -81,7 +113,7 @@
             <p>
                 Precio original:
                 <span style="text-decoration: line-through; color: gray;">
-					@originalPrice.ToString("C")
+                    @originalPrice.ToString("C")
                 </span>
             </p>
 
@@ -93,19 +125,30 @@
             <p style="color: green; font-weight: bold;">
                 @discountText
             </p>
+
+            <p>
+                Par o impar: <strong>@GetOddEvenWhile(product.Id)</strong>
+            </p>
+
+            <p>
+                Categoria segun precio: <strong>@GetPriceCategory(product.Price)</strong>
+            </p>
+
         </div>
     }
 </div>
 
+@* aca esto me parece se dejo por error? 
+    <div class="text-center">
 
-<div class="text-center">
-
-    @foreach (var product in Model)
-    {
+@foreach (var product in Model)
+{
         <div class="product-item">
-            <h2>@product.Id - @product.Name</h2>
+            //  <h2>@product.Id - @product.Name</h2>
             <p>Price: @product.Price.ToString("C")</p>
         </div>
-    }
+}
 
-</div>
+</div>*@
+
+
