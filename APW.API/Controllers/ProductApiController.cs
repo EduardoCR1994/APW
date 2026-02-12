@@ -1,4 +1,4 @@
-using APW.Data.Repositories;
+using APW.Business;
 using APW.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,30 +6,17 @@ namespace APW.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductApiController : ControllerBase
+    public class ProductApiController(ILogger<ProductApiController> logger, IProductBusiness business) : ApiControllerBase
     {
-       
-        private readonly ILogger<ProductApiController> _logger; //el readonly es para que no se pueda modificar despues de la inicializacion, solo que puede ser modificado en el constructor
-        private readonly IProductRepository _productRepository;
-        //el ILogger es una interfaz generica que permite registrar mensajes de log, y se inyecta en el constructor del controlador
 
-        public ProductApiController(ILogger<ProductApiController> logger, IProductRepository productRepository)
-        {
-            _logger = logger;
-            _productRepository = productRepository;
-        }
+        private readonly ILogger<ProductApiController> _logger = logger; //el readonly es para que no se pueda modificar despues de la inicializacion, solo que puede ser modificado en el constructor
 
-        [HttpGet(Name = "GetProducts")]
-        public IEnumerable<Product> Get()
+        [HttpGet]
+        public async Task<ComplexObject> Get()
         {
-            var products = _productRepository.GetProducts();
-            return [.. products.Select(p => new Product
-            {
-                Id = p.ProductId,
-                Name = p.ProductName ?? "Name not found",
-                Price = p.Inventory?.UnitPrice ?? 0m,
-                CategoryName = p.Category?.CategoryName ?? "Category not found"
-            })];
+            _logger.LogInformation("Getting all products");
+            var results = await business.GetProductsAsync();
+            return CreateComplexObject<Product>(results);
         }
     }
 }

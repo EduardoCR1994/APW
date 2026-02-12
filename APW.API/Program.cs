@@ -1,6 +1,6 @@
-using APW.Data;
+using APW.Business;
+using APW.Data.MSSQL;
 using APW.Data.Repositories;
-using APW.Data.Repositories.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +10,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ProductDbContext>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddSingleton<ProductDb2Context>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IProductBusiness, ProductBusiness>();
 
 var app = builder.Build();
 

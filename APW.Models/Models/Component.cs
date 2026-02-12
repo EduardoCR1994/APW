@@ -1,9 +1,10 @@
-﻿using System;
+﻿using APW.Models.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace APW.Data;
+namespace APW.Models;
 
-public partial class Component
+public partial class Component : IEntity
 {
     public decimal Id { get; set; }
 

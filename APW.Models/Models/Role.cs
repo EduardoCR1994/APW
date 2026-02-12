@@ -1,9 +1,10 @@
-﻿using System;
+﻿using APW.Models.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace APW.Data;
+namespace APW.Models;
 
-public partial class Role
+public partial class Role : IEntity
 {
     public int RoleId { get; set; }
 

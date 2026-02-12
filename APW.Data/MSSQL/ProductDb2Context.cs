@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using APW.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace APW.Data;
+namespace APW.Data.MSSQL;
 
-public partial class ProductDbContext : DbContext
+public partial class ProductDb2Context : DbContext
 {
-    public ProductDbContext()
+    public ProductDb2Context()
     {
     }
 
-    public ProductDbContext(DbContextOptions<ProductDbContext> options)
+    public ProductDb2Context(DbContextOptions<ProductDb2Context> options)
         : base(options)
     {
     }
@@ -29,7 +30,7 @@ public partial class ProductDbContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
-    public virtual DbSet<Task> Tasks { get; set; }
+    public virtual DbSet<APW.Models.Task> Tasks { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -39,16 +40,14 @@ public partial class ProductDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        // aca no me puteen, mi sql tiene otro nombre :( esto se pudo haber evitado con docker lo siento jiji 
-        //=> optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ProductDB2;Trusted_Connection=True;TrustServerCertificate=True");
-        => optionsBuilder.UseSqlServer("Server=Moke\\SQLEXPRESS01;Database=ProductDB;Trusted_Connection=True;TrustServerCertificate=True");
-
+        //=> optionsBuilder.UseSqlServer("Server=VALECECILIANO\\SQLEXPRESS;Database=ProductDB2;Trusted_Connection=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Server=Moke\\SQLEXPRESS01;Database=ProductDB;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Categori__19093A2B747B5277");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Categori__19093A2B8D8C6485");
 
             entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
             entity.Property(e => e.CategoryName).HasMaxLength(255);
@@ -73,7 +72,7 @@ public partial class ProductDbContext : DbContext
 
         modelBuilder.Entity<Inventory>(entity =>
         {
-            entity.HasKey(e => e.InventoryId).HasName("PK__Inventor__F5FDE6D33E11ADC2");
+            entity.HasKey(e => e.InventoryId).HasName("PK__Inventor__F5FDE6D3A7886C53");
 
             entity.ToTable("Inventory");
 
@@ -86,7 +85,7 @@ public partial class ProductDbContext : DbContext
 
         modelBuilder.Entity<Notification>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Notifica__3213E83FC1D1E876");
+            entity.HasKey(e => e.Id).HasName("PK__Notifica__3213E83F6A731F23");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
@@ -104,7 +103,7 @@ public partial class ProductDbContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6EDAEEB2A88");
+            entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6EDF4A9E64C");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
             entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
@@ -119,20 +118,20 @@ public partial class ProductDbContext : DbContext
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
-                .HasConstraintName("FK__Products__Catego__4AB81AF0");
+                .HasConstraintName("FK__Products__Catego__5CD6CB2B");
 
             entity.HasOne(d => d.Inventory).WithMany(p => p.Products)
                 .HasForeignKey(d => d.InventoryId)
-                .HasConstraintName("FK__Products__Invent__4BAC3F29");
+                .HasConstraintName("FK__Products__Invent__5DCAEF64");
 
             entity.HasOne(d => d.Supplier).WithMany(p => p.Products)
                 .HasForeignKey(d => d.SupplierId)
-                .HasConstraintName("FK__Products__Suppli__4CA06362");
+                .HasConstraintName("FK__Products__Suppli__5EBF139D");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Roles__8AFACE3A0BFD5006");
+            entity.HasKey(e => e.RoleId).HasName("PK__Roles__8AFACE3AA8648971");
 
             entity.Property(e => e.RoleId).HasColumnName("RoleID");
             entity.Property(e => e.RoleName).HasMaxLength(255);
@@ -140,7 +139,7 @@ public partial class ProductDbContext : DbContext
 
         modelBuilder.Entity<Supplier>(entity =>
         {
-            entity.HasKey(e => e.SupplierId).HasName("PK__Supplier__4BE66694650DB0C4");
+            entity.HasKey(e => e.SupplierId).HasName("PK__Supplier__4BE666947DA0DAE2");
 
             entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
             entity.Property(e => e.Address).HasMaxLength(1000);
@@ -154,9 +153,9 @@ public partial class ProductDbContext : DbContext
             entity.Property(e => e.SupplierName).HasMaxLength(255);
         });
 
-        modelBuilder.Entity<Task>(entity =>
+        modelBuilder.Entity<APW.Models.Task>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Tasks__3214EC07B31E7264");
+            entity.HasKey(e => e.Id).HasName("PK__Tasks__3214EC07E6CF4FD5");
 
             entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(1000);
@@ -169,7 +168,7 @@ public partial class ProductDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCAC7E8462B6");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACC898DE58");
 
             entity.Property(e => e.UserId).HasColumnName("UserID");
             entity.Property(e => e.CreatedAt).HasColumnType("datetime");

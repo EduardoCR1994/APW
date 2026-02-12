@@ -3,152 +3,48 @@
     ViewData["Title"] = "Product Page";
 }
 
-@functions {
-    string GetProductColor(int id)
-    {
-        return id % 2 == 0 ? "blue" : "red";
-    }
-
-    string GetDiscountPrice(decimal price)
-    {
-        // esto quita el numero entero y deja solo los centavos
-        int centavos = (int)((price - Math.Floor(price)) * 100);
-
-        switch (centavos > 50)
-        {
-            case true:
-                return "20% de descuento";
-            default:
-                return "10% de descuento";
-        }
-    }
-
-    // acá voy a hacer un switch que segun x categoria devuelva un descuento
-    decimal GetDiscountPriceByCategory(decimal price, string? categoryName)
-    {
-        decimal finalPrice;
-
-        switch (categoryName)
-        {
-            case "Snacks":
-                finalPrice = price * 0.90m; // 10% de descuento
-                break;
-            case "Electronics":
-                finalPrice = price * 0.80m; // 20% de descuento
-                break;
-            case "Dairy":
-                finalPrice = price * 0.85m; // 15% de descuento
-                break;
-            default:
-                finalPrice = price * 0.95m; // 5% de descuento
-                break;
-
-        }
-        return finalPrice;
-    }
-
-    string GetDiscountLabel(string? categoryName)
-    {
-        switch (categoryName)
-        {
-            case "Snacks":
-                return "10% de descuento";
-
-            case "Electronics":
-                return "20% de descuento";
-
-            case "Dairy":
-                return "15% de descuento";
-
-            default:
-                return "5% de descuento";
-        }
-    }
-
-    // esta funcion devuelve si el id es par o impar usando un while y el operador
-    // primero pasa con el Math.Abs al valor absoluto en caso de tener valores negativos
-    public string GetOddEvenWhile(int id)
-    {
-        int temp = Math.Abs(id);
-
-
-        while (temp > 1)
-        {
-            temp = temp % 2;
-        }
-
-        return temp == 0 ? "Par" : "Impar";
-    }
-
-    // en esta funcion categoriza el tipo de roducto segun el price
-    public string GetPriceCategory(decimal price)
-    {
-        if (price > 100m)
-        {
-            return "Producto caro";
-        }
-        else if (price > 50m)
-        {
-            return "Producto moderado";
-        }
-        else
-        {
-            return "Producto economico";
-        }
-    }
-    
-}
-
-<div class="text-center">
+<div class="row">
+    <div class="col-3">
+        <div class="product-item">
+           ID
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="product-item">
+            Name
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="product-item">
+            Rating
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="product-item">
+            Description
+        </div>
+    </div>
     @foreach (var product in Model)
     {
-        var originalPrice = product.Price;
-        var categoryName = product.CategoryName;
-        var discountedPrice = GetDiscountPriceByCategory(originalPrice, categoryName);
-        var discountText = GetDiscountLabel(categoryName);
-
-        <div class="product-item" style="color:@GetProductColor(product.Id)">
-            <h2>@product.Id - @product.Name</h2>
-
-            <p>
-                Precio original:
-                <span style="text-decoration: line-through; color: gray;">
-                    @originalPrice.ToString("C")
-                </span>
-            </p>
-
-            <p>
-                Precio con descuento:
-                <strong>@discountedPrice.ToString("C")</strong>
-            </p>
-
-            <p style="color: green; font-weight: bold;">
-                @discountText
-            </p>
-
-            <p>
-                Par o impar: <strong>@GetOddEvenWhile(product.Id)</strong>
-            </p>
-
-            <p>
-                Categoria segun precio: <strong>@GetPriceCategory(product.Price)</strong>
-            </p>
-
+        <div class="col-3">
+            <div class="product-item">
+                @product.CategoryId
+            </div>
         </div>
-    }
+        <div class="col-3">
+            <div class="product-item">
+                @product.ProductName
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="product-item">
+                @product.Rating
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="product-item">
+                @product.Description
+            </div>
+        </div>
+	}
 </div>
-
-@* aca esto me parece se dejo por error? 
-    <div class="text-center">
-
-@foreach (var product in Model)
-{
-        <div class="product-item">
-            //  <h2>@product.Id - @product.Name</h2>
-            <p>Price: @product.Price.ToString("C")</p>
-        </div>
-}
-
-</div>*@
-
-

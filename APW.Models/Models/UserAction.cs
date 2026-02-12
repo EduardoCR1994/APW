@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using APW.Models.Entities;
 
-namespace APW.Data;
 
-public partial class UserAction
+namespace APW.Models;
+
+public partial class UserAction : IEntity
 {
     public decimal? Id { get; set; }
 

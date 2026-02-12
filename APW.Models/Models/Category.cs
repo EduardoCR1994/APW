@@ -1,9 +1,10 @@
-﻿using System;
+﻿using APW.Models.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace APW.Data;
+namespace APW.Models;
 
-public partial class Category
+public partial class Category : IEntity
 {
     public int CategoryId { get; set; }
 
