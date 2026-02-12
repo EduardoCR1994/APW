@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using APW.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace APW.Data.MSSQL;
 
@@ -40,6 +38,7 @@ public partial class ProductDb2Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        //cambien aca a la conexion de base de datos papilloooos
         //=> optionsBuilder.UseSqlServer("Server=VALECECILIANO\\SQLEXPRESS;Database=ProductDB2;Trusted_Connection=True;TrustServerCertificate=True;");
             => optionsBuilder.UseSqlServer("Server=Moke\\SQLEXPRESS01;Database=ProductDB;Trusted_Connection=True;TrustServerCertificate=True");
 

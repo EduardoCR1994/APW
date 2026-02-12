@@ -1,5 +1,4 @@
-﻿using APW.Architecture;
-using APW.Architecture.Providers;
+﻿using APW.Architecture.Providers;
 using APW.Web.Models;
 
 namespace APW.Web.Services

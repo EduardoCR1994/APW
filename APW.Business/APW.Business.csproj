@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APW.Models\APW.Models.csproj" />
+    <ProjectReference Include="..\APW.Data\APW.Data.csproj" />
   </ItemGroup>
 
 </Project>

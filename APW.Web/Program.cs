@@ -1,4 +1,4 @@
-using APW.Architecture;
+using APW.Architecture.Providers;
 using APW.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);

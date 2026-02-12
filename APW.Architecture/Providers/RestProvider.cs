@@ -1,6 +1,6 @@
 ﻿using APW.Architecture.Helpers;
 
-namespace APW.Architecture;
+namespace APW.Architecture.Providers;
 
 /// <summary>
 /// Interface defining methods for RESTful operations.

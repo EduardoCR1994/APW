@@ -1,5 +1,4 @@
 using APW.API;
-using APW.Architecture;
 using APW.Architecture.Providers;
 using APW.Models;
 using APW.Web.Models;

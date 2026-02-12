@@ -1,4 +1,4 @@
-﻿using APW.Models.Entities;
+﻿using APW.Models;
 using System.Text.Json.Serialization;
 
 namespace APW.Models
