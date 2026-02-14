@@ -2,7 +2,8 @@ using APW.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//maes el UseInMemoryDatabase crea una base de datos temporal que se wipea cada que se reinicia el app
+//no esperen que se les guarde en la base de datos xd ya perdi como 30 minutos en esto hasta que chatGPT me dijo que soy un idiota
 builder.Services.AddDbContext<ProductDb>(opt =>opt.UseInMemoryDatabase("ProductList"));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
