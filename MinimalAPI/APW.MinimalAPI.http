@@ -1,0 +1,27 @@
+﻿@APW.MinimalAPI_HostAddress = https://localhost:7212
+
+GET {{APW.MinimalAPI_HostAddress}}/products
+
+###
+
+POST {{APW.MinimalAPI_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "productName": "Wireless Keyboard",
+  "description": "RGB keyboard",
+  "rating": 4.5,
+  "createdBy": "admin"
+}
+
+
+###
+
+POST {{APW.MinimalAPI_HostAddress}}/products
+Content-Type: application/json
+
+{
+  //Product
+}
+
+###
