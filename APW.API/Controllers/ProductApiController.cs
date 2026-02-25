@@ -40,15 +40,13 @@ namespace APW.API.Controllers
         [HttpGet("{id:int}", Name = "GetProductById")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            _logger.LogInformation("Getting product {Id}", id);
-
+           
             var product = await _repository.FindAsync(id);
             if (product == null)
             {
                 return NotFound(new ComplexObject
                 {
                     Entities = Enumerable.Empty<object>(),
-                    Errors = new List<string> { "Product not found" }
                 });
             }
 
